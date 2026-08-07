@@ -9,6 +9,7 @@ const PropertyCard = ({ property, view = "grid" }) => {
     <article
       className="
         group
+        w-full min-w-0
         overflow-hidden
         rounded-3xl
         border

@@ -200,8 +200,8 @@ const PropertyListing = () => {
                 </div>
             </section>
             {/* Content */}
-            <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-                <div className="grid grid-cols-12 gap-6 lg:gap-8">
+            <section className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+            <div className="grid min-w-0 grid-cols-12 gap-6 lg:gap-8">
                     {/* Filters */}
                     <aside className="hidden lg:block lg:col-span-3">
                   <Filters
@@ -211,7 +211,7 @@ const PropertyListing = () => {
                   />
               </aside>
                     {/* Results */}
-                    <section className="col-span-12 lg:col-span-9">
+                    <section className="col-span-12 min-w-0 lg:col-span-9">
                     <div className="mb-4 flex items-center justify-between lg:hidden">
                       <button
                         onClick={() => setShowFilters(true)}

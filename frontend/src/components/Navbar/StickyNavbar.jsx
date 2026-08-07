@@ -7,10 +7,10 @@ import Sidebar from "./Sidebar";
 import MiniSearch from "./MiniSearch";
 import Container from "../Common/Container";
 
-const StickyNavbar = ({mode}) => {
+const StickyNavbar = ({ mode }) => {
   return (
     <motion.header
-    initial={{
+      initial={{
         opacity: 0,
         y: -20,
         scale: 0.98,
@@ -31,44 +31,39 @@ const StickyNavbar = ({mode}) => {
       }}
       className="
         fixed
-        top-0
         left-0
         right-0
+        top-0
         z-50
         bg-blue-100
         shadow-lg
       "
     >
-      <Container className="flex h-20 items-center justify-between">
+      <Container>
+        <div className="flex w-full min-w-0 flex-col gap-3 py-3 md:flex-row md:items-center md:gap-5">
+          
+          {/* Top row on mobile */}
+          <div className="flex w-full items-center justify-between md:w-auto md:flex-shrink-0">
+            <Logo sticky />
 
-        {/* Logo */}
-
-        <Logo sticky />
-
-        {/* Mini Search */}
-
-        {
-          mode === "home" ? (
-            <MiniSearch />
-          ) : (
-            <MiniSearch />
-          )
-        }
-
-        {/* Right */}
-
-        <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 xl:gap-6">
-          <div className="hidden lg:block">
-          <ContactDropdown sticky />
+            {/* Mobile menu */}
+            <div className="lg:hidden">
+              <Sidebar sticky />
+            </div>
           </div>
-          <div className="hidden lg:block">
-          <ActivityDropdown sticky />
+
+          {/* Search */}
+          <div className="w-full min-w-0 flex-1">
+            <MiniSearch />
           </div>
-          <div className="hidden lg:block">
-          <Sidebar sticky />
+
+          {/* Desktop right controls */}
+          <div className="hidden flex-shrink-0 items-center gap-4 lg:flex xl:gap-6">
+            <ContactDropdown sticky />
+            <ActivityDropdown sticky />
+            <Sidebar sticky />
           </div>
         </div>
-
       </Container>
     </motion.header>
   );
