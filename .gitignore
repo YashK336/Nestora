@@ -12,6 +12,11 @@ frontend/.env.*
 server/.env
 server/.env.*
 
+# Allow safe example files
+!.env.example
+!frontend/.env.example
+!server/.env.example
+
 # Production builds
 dist/
 frontend/dist/
