@@ -116,7 +116,14 @@ const PropertyListing = () => {
     mode="search"
     isSticky={true}
     />
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen
+    bg-gray-100
+    text-gray-900
+    transition-colors
+    duration-300
+    dark:bg-slate-950
+    dark:text-slate-100
+  ">
         <AnimatePresence>
   {showFilters && (
     <>
@@ -155,7 +162,7 @@ const PropertyListing = () => {
         "
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b bg-white p-5">
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-900">
           <h2 className="text-xl font-bold">
             Filters
           </h2>
@@ -168,6 +175,7 @@ const PropertyListing = () => {
               text-2xl
               transition
               hover:bg-gray-100
+              dark:hover:bg-slate-800
             "
           >
             ✕
@@ -175,7 +183,7 @@ const PropertyListing = () => {
         </div>
 
         {/* Filters */}
-        <div className="p-4">
+        <div className="p-4 dark:bg-slate-900">
           <Filters
             filters={filters}
             setFilters={setFilters}
@@ -188,13 +196,13 @@ const PropertyListing = () => {
   )}
 </AnimatePresence>
             {/* Hero */}
-            <section className="mt-20 border-b bg-white">
+            <section className="border-b border-gray-200 bg-white transition-colors duration-300 dark:border-slate-800 dark:bg-slate-900">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
                     {selectedType || state?.property || "Properties"} in{" "}
                     {selectedCity || state?.location || "Delhi"}
                   </h1>
-                    <p className="mt-2 text-sm sm:text-base text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500 dark:text-slate-400 sm:text-base">
                         {pagination.totalProperties} {selectedType ? `${selectedType} properties` : "properties"} found
                     </p>
                 </div>
@@ -216,21 +224,24 @@ const PropertyListing = () => {
                       <button
                         onClick={() => setShowFilters(true)}
                         className="
-                          rounded-xl
-                          border
-                          border-gray-300
-                          bg-white
-                          px-4
-                          py-2
-                          text-sm
-                          font-medium
-                          shadow-sm
-                        "
+  rounded-xl
+  border
+  border-gray-300
+  bg-white
+  px-4
+  py-2
+  text-sm
+  font-medium
+  shadow-sm
+
+  dark:border-slate-700
+  dark:bg-slate-800
+  dark:text-slate-100"
                       >
                         Filters
                       </button>
 
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-500 dark:text-slate-400">
                         {pagination.totalProperties} Results
                       </span>
                     </div>

@@ -5,27 +5,17 @@ const options = [
     "Semi Furnished",
     "Fully Furnished",
   ];
-  
   const FurnishingFilter = ({ filters, setFilters }) => {
     return (
       <div>
-        <h3 className="mb-4 text-lg font-semibold">
-          Furnishing
-        </h3>
-  
         <div className="space-y-3">
-  
           {options.map((option) => {
-  
             const label = option || "Any";
-  
             return (
-  
               <label
                 key={label}
-                className="flex cursor-pointer items-center gap-3"
+                className="flex cursor-pointer items-center gap-3 text-gray-700 dark:text-white"
               >
-  
                 <input
                   type="radio"
                   name="furnishing"
@@ -36,21 +26,15 @@ const options = [
                       furnishing: option,
                     }))
                   }
-                  className="h-4 w-4 accent-blue-600"
+                  className="h-4 w-4 accent-blue-600 dark:accent-blue-400"
                 />
-  
-                <span className="font-medium text-gray-700">
+                <span className="font-medium text-gray-700 dark:text-white">
                   {label}
                 </span>
-  
               </label>
-  
             );
-  
           })}
-  
         </div>
-  
       </div>
     );
   };

@@ -12,9 +12,6 @@ const PropertyTypeFilter = ({ filters, setFilters, propertyTypes }) => {
 
   return (
     <div className="mb-8">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900">
-        Property Type
-      </h3>
 
       <div className="space-y-3">
         {propertyTypes.map((type) => {
@@ -25,30 +22,26 @@ const PropertyTypeFilter = ({ filters, setFilters, propertyTypes }) => {
               key={type.name}
               className={`flex cursor-pointer items-center justify-between rounded-xl border px-4 py-3 transition-all duration-300 ${
                 selected
-                  ? "border-blue-600 bg-blue-50"
-                  : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/40"
-              }`}
+                  ? "border-blue-600 bg-blue-50 dark:bg-blue-900"
+                  : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/40 dark:border-slate-700 dark:hover:bg-blue-900/40"
+              } dark:text-white`}
             >
               <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
                   checked={selected}
                   onChange={() => togglePropertyType(type.name)}
-                  className="h-4 w-4 cursor-pointer accent-blue-600"
+                  className="h-4 w-4 cursor-pointer accent-blue-600 dark:accent-blue-400"
                 />
 
                 <span
                   className={`font-medium ${
-                    selected ? "text-blue-700" : "text-gray-700"
+                    selected ? "text-blue-700 dark:text-white" : "text-gray-700 dark:text-white"
                   }`}
                 >
                   {type.name}
                 </span>
               </div>
-
-              <span className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-500">
-                {type.count}
-              </span>
             </label>
           );
         })}

@@ -15,9 +15,9 @@ const ContactDropdown = ({ sticky = false }) => {
 
   const dropdownRef = useRef(null);
 
-  useClickOutside(dropdownRef, closeMenu);
-
   const isOpen = activeMenu === "contact";
+
+  useClickOutside(dropdownRef, closeMenu, isOpen);
 
   return (
     <div
@@ -29,8 +29,8 @@ const ContactDropdown = ({ sticky = false }) => {
       <button
         className={`group flex items-center gap-2 rounded-full px-4 py-2 transition-all duration-300 ${
           sticky
-            ? "text-gray-700 hover:bg-gray-100"
-            : "text-white hover:bg-white/10"
+            ? "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-900/40"
+            : "text-white hover:bg-white/10 dark:text-white dark:hover:bg-gray-900/40"
         }`}
       >
         <FaPhoneAlt />
@@ -64,35 +64,37 @@ const ContactDropdown = ({ sticky = false }) => {
             transition={{
               duration: 0.22,
             }}
-            className="absolute right-0 mt-4 w-80 overflow-hidden rounded-3xl bg-white shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
+            className="absolute right-0 mt-4 w-80 overflow-hidden rounded-3xl bg-white 
+            shadow-[0_20px_60px_rgba(0,0,0,0.18)] dark:bg-slate-800 dark:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
           >
             <div className="border-b p-6">
               <h3 className="text-lg font-semibold">Customer Support</h3>
-              <p className="mt-1 text-sm text-gray-500">We're happy to help.</p>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">We're happy to help.</p>
             </div>
 
             <div className="space-y-5 p-6">
               <div className="flex gap-4">
-                <FaPhoneAlt className="mt-1 text-blue-600" />
+                <FaPhoneAlt className="mt-1 text-blue-600 dark:text-blue-400" />
                 <div>
-                  <p className="text-sm text-gray-500">Toll Free</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Toll Free</p>
                   <p className="font-semibold">{contactInfo.tollFree}</p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <FaGlobe className="mt-1 text-blue-600" />
+                <FaGlobe className="mt-1 text-blue-600 dark:text-blue-400" />
                 <div>
-                  <p className="text-sm text-gray-500">International</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">International</p>
                   <p className="font-semibold">{contactInfo.international}</p>
                 </div>
               </div>
 
-              <button className="mt-2 w-full rounded-xl bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700">
+              <button className="mt-2 w-full rounded-xl bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700 
+              dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700">
                 Request Call Back
               </button>
 
-              <p className="text-center text-xs text-gray-400">
+              <p className="text-center text-xs text-gray-400 dark:text-gray-400">
                 {contactInfo.workingHours}
               </p>
             </div>

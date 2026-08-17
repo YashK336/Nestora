@@ -1,5 +1,4 @@
 const RadioFilter = ({
-    title,
     name,
     options,
     value,
@@ -7,10 +6,6 @@ const RadioFilter = ({
   }) => {
     return (
       <div>
-  
-        <h3 className="mb-4 text-lg font-semibold">
-          {title}
-        </h3>
   
         <div className="space-y-3">
   
@@ -27,21 +22,15 @@ const RadioFilter = ({
                   cursor-pointer
                   items-center
                   gap-3
-  
                   rounded-xl
-  
                   border
-  
-                  border-gray-200
-  
+                  border-gray-200 dark:border-slate-700
                   px-4
                   py-3
-  
                   transition-all
                   duration-300
-  
-                  hover:border-blue-300
-                  hover:bg-blue-50/40
+                  hover:border-blue-300 dark:hover:border-blue-300 dark:hover:bg-blue-900/40
+                  hover:bg-blue-50/40 dark:hover:bg-blue-900/40
                 "
               >
   
@@ -50,13 +39,13 @@ const RadioFilter = ({
                   name={name}
                   checked={value === option}
                   onChange={() => onChange(option)}
-                  className="h-4 w-4 accent-blue-600"
+                  className="h-4 w-4 accent-blue-600 dark:accent-blue-400"
                 />
   
                 <span
                   className="
                     font-medium
-                    text-gray-700
+                    text-gray-700 dark:text-white
                   "
                 >
                   {label}

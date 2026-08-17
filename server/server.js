@@ -15,17 +15,24 @@ connectDB();
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  process.env.CLIENT_URL,
-].filter(Boolean);
+  "http://localhost:4173",
+  "https://nestora-home.vercel.app",
+];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin
+      // (Postman, server-to-server, etc.)
+      if (!origin) {
         return callback(null, true);
       }
 
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.log("Blocked CORS origin:", origin);
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,

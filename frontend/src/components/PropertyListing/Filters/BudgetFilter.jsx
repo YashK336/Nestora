@@ -6,13 +6,7 @@ const BudgetFilter = ({ filters, setFilters }) => {
     return (
 
         <div className="mb-8">
-        
-        <h3 className="mb-6 text-lg font-semibold">
-        
-        Budget
-        
-        </h3>
-        <div className="mb-3 flex justify-between text-sm text-gray-500">
+        <div className="mb-3 flex justify-between text-sm text-gray-500 dark:text-slate-400">
 
         <span>
 
@@ -69,13 +63,11 @@ const BudgetFilter = ({ filters, setFilters }) => {
                     ],
         
                     colors:[
-                        "#E5E7EB",
-                        "#2563EB",
-                        "#E5E7EB"
+                        "#E5E7EB dark:bg-slate-600",
+                        "#2563EB dark:bg-blue-600",
+                        "#E5E7EB dark:bg-slate-600"
                     ],
-        
                     min:MIN,
-        
                     max:MAX
         
                 })
@@ -94,20 +86,8 @@ const BudgetFilter = ({ filters, setFilters }) => {
             
             {...props}
             
-            className="
-            h-5
-            w-5
-            
-            rounded-full
-            
-            border-4
-            border-blue-600
-            
-            bg-white
-            
-            shadow-lg
-            "
-            
+            className="h-5 w-5 rounded-full border-4 border-blue-600 bg-white shadow-lg dark:bg-slate-600 
+            dark:border-blue-600"
             >
             
             </div>
@@ -118,12 +98,13 @@ const BudgetFilter = ({ filters, setFilters }) => {
                 <div
                     className="
                     rounded-lg
-                    bg-blue-50
+                    bg-blue-50 dark:bg-blue-900
                     px-4
                     py-2
+                    mx-2
                     text-sm
                     font-semibold
-                    text-blue-700
+                    text-blue-700 dark:text-blue-400
                     "
                     >
                     Min
@@ -132,12 +113,13 @@ const BudgetFilter = ({ filters, setFilters }) => {
                 <div
                     className="
                     rounded-lg
-                    bg-blue-50
+                    bg-blue-50 dark:bg-blue-900
                     px-4
                     py-2
+                    mx-2
                     text-sm
                     font-semibold
-                    text-blue-700
+                    text-blue-700 dark:text-blue-400
                     "
                     >
                     Max

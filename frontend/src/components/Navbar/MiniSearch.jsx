@@ -38,17 +38,21 @@ const MiniSearch = () => {
     <div
       className="
         flex
-        w-full
-        min-w-0
-        items-center
-        rounded-2xl
-        bg-white
-        p-1.5
-        shadow-md
-        ring-1
-        ring-black/5
-        sm:p-2
-        md:rounded-full
+  w-full
+  min-w-0
+  items-center
+  rounded-2xl
+  bg-white
+  p-1.5
+  shadow-md
+  ring-1
+  ring-black/5
+  transition-colors
+  duration-300
+  dark:bg-slate-800
+  dark:ring-white/10
+  sm:p-2
+  md:rounded-full
       "
     >
       {/* Location */}
@@ -81,6 +85,9 @@ const MiniSearch = () => {
             sm:w-[105px]
             sm:text-sm
             md:w-[120px]
+            text-gray-800
+            dark:text-slate-100
+            dark:[color-scheme:dark]
           "
         >
           {locations.map((city) => (
@@ -108,6 +115,10 @@ const MiniSearch = () => {
             font-medium
             outline-none
             md:w-[120px]
+            text-gray-800
+            dark:text-slate-100
+            dark:[color-scheme:dark]
+
           "
         >
           {propertyTypes.map((item) => (
@@ -119,7 +130,7 @@ const MiniSearch = () => {
       </div>
 
       {/* Divider */}
-      <div className="hidden h-7 w-px flex-shrink-0 bg-gray-200 md:block" />
+      <div className="hidden h-7 w-px flex-shrink-0 bg-gray-200 dark:bg-slate-600 md:block" />
 
       {/* Search input */}
       <input
@@ -134,8 +145,13 @@ const MiniSearch = () => {
           bg-transparent
           px-2
           text-sm
+          text-gray-900
           outline-none
           placeholder:text-gray-400
+
+          dark:text-slate-100
+          dark:placeholder:text-slate-500
+
           sm:px-3
           md:px-4
         "

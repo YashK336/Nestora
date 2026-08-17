@@ -11,13 +11,13 @@ const PropertyInfo = ({ property }) => {
       {/* Rating + Badge */}
 
       <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1">
+        <div className="flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 dark:bg-amber-900">
           <Star
             size={15}
             className="fill-amber-400 text-amber-400"
           />
 
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
             {property.rating || "4.8"}
           </span>
         </div>
@@ -31,13 +31,13 @@ const PropertyInfo = ({ property }) => {
 
       {/* Title */}
 
-      <h2 className="line-clamp-2 text-2xl font-bold leading-tight text-slate-900 transition group-hover:text-blue-600">
+      <h2 className="line-clamp-2 text-2xl font-bold leading-tight text-slate-900 transition group-hover:text-blue-600 dark:text-slate-100">
         {property.title}
       </h2>
 
       {/* Builder */}
 
-      <div className="mt-4 flex items-center gap-2 text-slate-600">
+      <div className="mt-4 flex items-center gap-2 text-slate-700 dark:text-slate-300">
         <Building2
           size={18}
           className="text-blue-600"
@@ -50,7 +50,7 @@ const PropertyInfo = ({ property }) => {
 
       {/* Location */}
 
-      <div className="mt-3 flex items-center gap-2 text-slate-500">
+      <div className="mt-3 flex items-center gap-2 text-slate-500 dark:text-slate-400">
         <MapPin
           size={17}
           className="text-blue-600"
@@ -65,10 +65,10 @@ const PropertyInfo = ({ property }) => {
 
       <div className="mt-5 flex">
         <span
-          className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium ${
+          className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium dark:text-slate-100 ${
             property.condition === "Ready to Move"
-              ? "bg-emerald-50 text-emerald-700"
-              : "bg-orange-50 text-orange-700"
+  ? "bg-green-100 text-green-700 dark:bg-emerald-900/40 dark:text-emerald-300"
+  : "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-300"
           }`}
         >
           <BadgeCheck size={16} />

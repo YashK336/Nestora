@@ -58,7 +58,7 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
     }}
     className="relative -mt-20 z-30 flex justify-center px-6">
       <div className="w-full max-w-[1100px] rounded-3xl bg-white/95 backdrop-blur-lg shadow-[0_10px_25px_rgba(0,0,0,0.38)]
-       p-4 sm:p-5 lg:p-6">
+       p-4 sm:p-5 lg:p-6 dark:bg-slate-800 dark:shadow-[0_10px_25px_rgba(0,0,0,0.38)]">
         {/* Tabs */}
         <div className="flex overflow-x-auto whitespace-nowrap border-b border-gray-200 scrollbar-hide">
           {tabs.map((tab) => (
@@ -67,13 +67,13 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
               onClick={() => setActiveTab(tab)}
               className={`group relative px-7 py-5 font-semibold transition-colors duration-300 ${
                 activeTab === tab
-                ? "text-gray-900"
-                : "text-gray-500 hover:text-gray-900"
+                ? "text-gray-900 dark:text-white"
+                : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
               }`}
             >
             {tab}
             <span
-              className={`absolute left-1/2 bottom-0 h-[3px] -translate-x-1/2 rounded-full bg-blue-600 
+              className={`absolute left-1/2 bottom-0 h-[3px] -translate-x-1/2 rounded-full bg-blue-600 dark:bg-blue-400 
                 transition-all duration-300 ${
               activeTab === tab
                 ? "w-full"
@@ -87,7 +87,7 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
         <div
             className=" mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
           <div className=" col-span-1 lg:col-span-2 flex items-center gap-3 rounded-xl border border-gray-300 px-4 py-3">
-            <FaMapMarkerAlt className="text-blue-600" />
+            <FaMapMarkerAlt className="text-blue-600 dark:text-blue-400" />
             <select
               value={location}
               onChange={(e) => setLocation(e.target.value)}
@@ -111,12 +111,12 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search locality, project or builder"
             className="col-span-1 sm:col-span-2 lg:col-span-4 w-full rounded-xl border border-gray-300 px-4 py-3 
-            outline-none focus:border-blue-600"
+            outline-none focus:border-blue-600 dark:border-gray-700 dark:bg-slate-800 dark:text-white dark:focus:border-blue-400"
           />
             <select
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className="col-span-1 lg:col-span-2 w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="col-span-1 lg:col-span-2 w-full rounded-xl border border-gray-300 px-4 py-3 dark:border-gray-700 dark:bg-slate-800 dark:text-white"
             >
               {budgets.map((item) => (
                 <option key={item} value={item}>
@@ -127,7 +127,7 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
             <select
               value={property}
               onChange={(e) => setProperty(e.target.value)}
-              className="col-span-1 lg:col-span-2 w-full rounded-xl border border-gray-300 px-4 py-3"
+              className="col-span-1 lg:col-span-2 w-full rounded-xl border border-gray-300 px-4 py-3 dark:border-gray-700 dark:bg-slate-800 dark:text-white"
             >
               {propertyTypes.map((item) => (
                 <option key={item} value={item}>
@@ -138,7 +138,7 @@ const SearchPanel = forwardRef(({isSticky}, ref) => {
             <button
               onClick={handleSearch}
               className="col-span-1 sm:col-span-2 lg:col-span-2 flex items-center justify-center gap-2 w-full 
-              rounded-xl bg-blue-600 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-blue-700 
+              rounded-xl bg-blue-600 px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700
               hover:scale-[1.02]">
             <FaSearch />
             Search

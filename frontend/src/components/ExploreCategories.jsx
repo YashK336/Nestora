@@ -7,13 +7,14 @@ const ExploreCategories = () => {
         <Container className="py-12 sm:py-16 lg:py-20">
             {/* Heading */}
             <div className="mb-12">
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[4px] sm:tracking-[6px] text-blue-600">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-[4px] sm:tracking-[6px] 
+            text-blue-600 dark:text-blue-400">
                     Explore
                 </p>
-                <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">  
+                <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">  
                     Browse by Property Type
                 </h2>
-                <p className="mt-4 max-w-xl lg:max-w-2xl text-base lg:text-lg text-gray-500">
+                <p className="mt-4 max-w-xl lg:max-w-2xl text-base lg:text-lg text-gray-500 dark:text-gray-400">
                     Discover apartments, villas, commercial spaces,
                     plots and more across India's most popular cities.
                 </p>
@@ -29,8 +30,8 @@ const ExploreCategories = () => {
                         `/properties?type=${encodeURIComponent(category.type)}`
                     )
                 }
-                className=" group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-lg transition-all 
-                duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                className=" group cursor-pointer overflow-hidden rounded-3xl bg-white shadow-lg transition-all dark:bg-slate-800 dark:shadow-lg
+                duration-500 hover:-translate-y-2 hover:shadow-2xl dark:hover:-translate-y-2 dark:hover:shadow-2xl">
                     {/* Image */}
                     <div className="overflow-hidden">
                         <img
@@ -40,10 +41,11 @@ const ExploreCategories = () => {
                     </div>
                     {/* Content */}
                     <div className="p-5 sm:p-6">
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 transition duration-300 group-hover:text-blue-600">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 transition duration-300 
+                        group-hover:text-blue-600 dark:text-white">
                             {category.title}
                         </h3>
-                        <p className="mt-2 text-sm sm:text-base text-gray-500">
+                        <p className="mt-2 text-sm sm:text-base text-gray-500 dark:text-gray-400">
                             {category.properties}
                         </p>
                     </div>

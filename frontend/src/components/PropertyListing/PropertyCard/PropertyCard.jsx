@@ -9,18 +9,24 @@ const PropertyCard = ({ property, view = "grid" }) => {
     <article
       className="
         group
-        w-full min-w-0
-        overflow-hidden
-        rounded-3xl
-        border
-        border-gray-200
-        bg-white
-        shadow-sm
-        transition-all
-        duration-300
-        hover:-translate-y-0.5
-        hover:shadow-2xl
-      "
+  w-full
+  min-w-0
+  overflow-hidden
+  rounded-3xl
+  border
+  border-gray-200
+  bg-white
+  shadow-sm
+  transition-all
+  duration-300
+  hover:-translate-y-0.5
+  hover:shadow-2xl
+
+  dark:border-slate-800
+  dark:bg-slate-900
+  dark:shadow-black/20
+  dark:hover:shadow-black/40
+"
     >
       {view === "grid" ? (
         <>

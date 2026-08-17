@@ -12,9 +12,6 @@ const BedroomFilter = ({ filters, setFilters }) => {
   };
   return (
     <div className="mb-8">
-      <h3 className="mb-4 text-lg font-semibold text-gray-900">
-        Bedrooms
-      </h3>
       <div className="space-y-3">
         {bedrooms.map((bedroom) => {
           const selected = filters.bedrooms.includes(bedroom);
@@ -34,8 +31,8 @@ const BedroomFilter = ({ filters, setFilters }) => {
                 duration-300
                 ${
                   selected
-                    ? "border-blue-600 bg-blue-50"
-                    : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/40"
+                    ? "border-blue-600 bg-blue-50 dark:bg-blue-900"
+                    : "border-gray-200 hover:border-blue-300 hover:bg-blue-50/40 dark:border-slate-700 dark:hover:bg-blue-900/40"
                 }
               `}
             >
@@ -44,9 +41,9 @@ const BedroomFilter = ({ filters, setFilters }) => {
                   type="checkbox"
                   checked={selected}
                   onChange={() => toggleBedroom(bedroom)}
-                  className="h-4 w-4 accent-blue-600"
+                  className="h-4 w-4 accent-blue-600 dark:accent-blue-400"
                 />
-                <span className="font-medium text-gray-700">
+                <span className="font-medium text-gray-700 dark:text-white">
                   {bedroom} BHK
                 </span>
               </div>

@@ -6,12 +6,14 @@ import { AuthProvider } from "./admin/context/AuthContext";
 import "./index.css";
 
 import { NavbarProvider } from "./context/NavbarContext";
-
+import { ThemeProvider } from "./context/ThemeContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NavbarProvider>
       <AuthProvider>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </AuthProvider>
     </NavbarProvider>
   </React.StrictMode>

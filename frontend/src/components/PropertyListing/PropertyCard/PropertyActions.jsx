@@ -12,14 +12,22 @@ const PropertyActions = ({ property }) => {
         <div className="mt-6 flex items-center gap-4">
             <button
   className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-blue-600 px-5 py-3 
-  font-semibold text-blue-600 transition-all duration-300 hover:bg-blue-600 hover:text-white">
+  font-semibold transition-all duration-300
+text-blue-600
+hover:bg-blue-600
+hover:text-white
+dark:border-blue-500
+dark:text-blue-400
+dark:hover:bg-blue-600
+dark:hover:text-white">
   <FaPhoneAlt />
 
   Contact Builder
 </button>
 <button
   onClick={handleViewDetails}
-  className="group flex items-center justify-center gap-2 rounded-xl bg-gray-900 px-5 py-3 font-semibold text-white transition-all duration-300 hover:bg-black">
+  className="group flex items-center justify-center gap-2 rounded-xl bg-gray-900 px-5 py-3 font-semibold text-white 
+  transition-all duration-300 hover:bg-black dark:bg-slate-600 dark:hover:bg-slate-700">
 
   View Details
 

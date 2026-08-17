@@ -9,7 +9,7 @@ const ServiceSlider = () => {
   return (
     <Container className="py-12 sm:py-16 lg:py-20">
       <h3
-  className="text-center text-xs sm:text-sm uppercase tracking-[3px] sm:tracking-[4px] font-semibold text-gray-400">
+  className="text-center text-xs sm:text-sm uppercase tracking-[3px] sm:tracking-[4px] font-semibold text-gray-400 dark:text-gray-400">
         Get Started with Exploring Real Estate Options
       </h3>
       <Swiper
@@ -45,12 +45,12 @@ const ServiceSlider = () => {
                   alt={service.title}
                   className="h-40 sm:h-44 lg:h-48 w-full object-cover transition duration-500 group-hover:scale-110"/>
                 {service.badge && (
-                  <span className="absolute left-3 top-3 rounded bg-red-500 px-2 py-1 text-xs font-bold text-white">
+                  <span className="absolute left-3 top-3 rounded bg-red-500 px-2 py-1 text-xs font-bold text-white dark:text-white">
                     {service.badge}
                   </span>
                 )}
               </div>
-              <h4 className="mt-4 text-base sm:text-lg font-semibold text-gray-800 transition group-hover:text-blue-600">
+              <h4 className="mt-4 text-base sm:text-lg font-semibold text-gray-800 transition group-hover:text-blue-600 dark:text-white">
                 {service.title}
               </h4>
             </div>

@@ -3,11 +3,11 @@ const Logo = ({sticky=false}) => {
     const navigate = useNavigate();
     return (
       <div className="cursor-pointer select-none" onClick={() => navigate("/")}>
-        <h1 className={`text-3xl font-extrabold tracking-tight ${sticky ? "text-gray-900" : "text-white"}`}>
+        <h1 className={`text-3xl font-extrabold tracking-tight ${sticky ? "text-gray-900 dark:text-white" : "text-white dark:text-white"}`}>
           Nestora
         </h1>
   
-        <p className="text-[10px] uppercase tracking-[5px] text-blue-500">
+        <p className={`text-[10px] uppercase tracking-[5px] text-blue-500 ${sticky ? "text-gray-900 dark:text-blue-400" : "text-white dark:text-blue-400"}`}>
           Real Estate
         </p>
       </div>

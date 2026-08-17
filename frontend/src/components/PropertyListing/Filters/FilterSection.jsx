@@ -9,10 +9,22 @@ const FilterSection = ({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="mb-5 rounded-2xl border border-gray-200 bg-white">
-
+    <div
+      className="
+        mb-5
+        overflow-hidden
+        rounded-2xl
+        border
+        border-gray-200
+        bg-white
+        dark:border-slate-700
+        dark:bg-slate-800
+      "
+    >
+      {/* HEADER */}
       <button
-        onClick={() => setOpen(!open)}
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
         className="
           flex
           w-full
@@ -21,19 +33,37 @@ const FilterSection = ({
           p-4
           text-left
           font-semibold
+          text-gray-900
+          transition-colors
+          duration-200
+          hover:bg-slate-50
+          dark:text-slate-100
+          dark:hover:bg-slate-700
         "
       >
         <span>{title}</span>
 
-        {open ? (
-          <FaChevronDown />
-        ) : (
-          <FaChevronRight />
-        )}
+        <span className="text-slate-500 dark:text-slate-300">
+          {open ? (
+            <FaChevronDown size={15} />
+          ) : (
+            <FaChevronRight size={15} />
+          )}
+        </span>
       </button>
 
+      {/* CONTENT */}
       {open && (
-        <div className="border-t p-4">
+        <div
+          className="
+            border-t
+            border-gray-200
+            bg-white
+            p-4
+            dark:border-slate-700
+            dark:bg-slate-900
+          "
+        >
           {children}
         </div>
       )}

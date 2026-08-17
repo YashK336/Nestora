@@ -1,24 +1,25 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ArrowLeft } from "lucide-react";
 import Navbar from "../components/Navbar/Navbar";
 import ImageGallery from "../components/PropertyDetails/ImageGallery";
 import PropertyOverview from "../components/PropertyDetails/PropertyOverview";
 import QuickInfo from "../components/PropertyDetails/QuickInfo";
 import Description from "../components/PropertyDetails/Description";
 import Amenities from "../components/PropertyDetails/Amenities";
-import { useEffect, useState } from "react";
-import { getProperty } from "../services/propertyService";
-import { Link } from "react-router-dom";
-import { Building2, ArrowLeft } from "lucide-react";
 import PropertyDetailsSkeleton from "../components/PropertyDetails/PropertyDetailsSkeleton";
+import { getProperty } from "../services/propertyService";
+
 const PropertyDetails = () => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchProperty = async () => {
       try {
         const data = await getProperty(id);
-      setProperty(data);
+        setProperty(data);
       } catch (error) {
         console.error(error);
         setProperty(null);
@@ -26,9 +27,10 @@ const PropertyDetails = () => {
         setLoading(false);
       }
     };
-  
+
     fetchProperty();
   }, [id]);
+
   if (loading) {
     return (
       <>
@@ -37,101 +39,218 @@ const PropertyDetails = () => {
       </>
     );
   }
+
   if (!property) {
     return (
       <>
         <Navbar mode="search" isSticky={true} />
-  
-        <main className="flex min-h-screen items-center justify-center bg-slate-50 px-6 pt-20">
-          <div className="max-w-lg text-center">
-            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-blue-50 text-blue-600">
-              <Building2 size={42} />
-            </div>
-  
-            <h1 className="mt-7 text-3xl font-bold text-slate-900">
-              Property not found
-            </h1>
-  
-            <p className="mt-3 leading-7 text-slate-500">
-              This property may have been removed, or the
-              link you're using is no longer available.
-            </p>
-  
-            <div className="mt-7 flex justify-center gap-3">
-              <Link
-                to="/properties"
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
-              >
-                <ArrowLeft size={17} />
-                Browse Properties
-              </Link>
-            </div>
-          </div>
+        <main className="flex min-h-screen flex-col items-center justify-center bg-slate-50 px-4 pt-24 flex
+  min-h-screen
+  items-center
+  justify-center
+  bg-slate-50
+  px-6
+  pt-20
+  transition-colors
+  duration-300
+  dark:bg-slate-950
+dark:bg-slate-950">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+            Property not found
+          </h1>
+          <p className="mt-2 text-slate-500">
+            This listing may have been removed or the link is invalid.
+          </p>
+          <Link
+            to="/properties"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
+          >
+            <ArrowLeft size={18} />
+            Back to listings
+          </Link>
         </main>
       </>
     );
   }
+
   return (
     <>
-      {/* Search Navbar */}
-      <Navbar
-        mode="search"
-        isSticky={true}
-      />
-      {/* Page */}
-      <main className="bg-gray-50 pt-24 sm:pt-28 pb-10 sm:pb-16">
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          {/* Gallery */}
+      <Navbar mode="search" isSticky={true} />
+
+      <main className="min-h-screen bg-slate-50 pb-10 pt-24 transition-colors duration-300 dark:bg-slate-950 sm:pb-16 sm:pt-28">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <ImageGallery property={property} />
-          {/* Main Content */}
-          <div
-            className="mt-6 grid grid-cols-12 gap-6 lg:gap-8">
-            {/* Left */}
-            <div
-                className="col-span-12 lg:col-span-8 space-y-6 lg:space-y-8">
+
+          <div className="mt-6 grid grid-cols-12 gap-6 lg:gap-8">
+            <div className="col-span-12 space-y-6 lg:col-span-8 lg:space-y-8">
               <PropertyOverview property={property} />
-
-              {/* Upcoming Components */}
-
               <QuickInfo property={property} />
-
               <Description property={property} />
-
               <Amenities property={property} />
-
-              {/* <PropertyLocation property={property} /> */}
-
-              {/* <SimilarProperties property={property} /> */}
             </div>
-            {/* Right */}
-            <aside className="col-span-12 lg:col-span-4 mt-2 lg:mt-0">
-              {/* Contact Card */}
-              <div
-                  className="rounded-3xl bg-white p-5 sm:p-6 shadow-lg lg:sticky lg:top-28">
-                <h2 className="text-2xl sm:text-3xl font-bold text-blue-700">
-                ₹{Number(property.price || 0).toLocaleString("en-IN")}
-                </h2>
-                <p className="mt-2 text-gray-500">
-                  {property.condition}
-                </p>
-                <button
-                  className="mt-6 w-full rounded-xl bg-blue-600 py-3 sm:py-4 font-semibold text-white transition hover:bg-blue-700">
-                  Contact Builder
-                </button>
-                <button
-                  className="mt-4 w-full rounded-xl border border-blue-600 py-4 font-semibold text-blue-600 transition hover:bg-blue-50">
-                  Get Phone Number
-                </button>
-                <button
-                  className="mt-4 w-full rounded-xl border py-4 font-semibold transition hover:bg-gray-100">
-                  Schedule Visit
-                </button>
-              </div>
-            </aside>
+
+            <aside className="col-span-12 mt-2 lg:col-span-4 lg:mt-0">
+  <div
+    className="
+      overflow-hidden
+      rounded-3xl
+      border
+      border-slate-200
+      bg-white
+      shadow-lg
+      transition-colors
+      duration-300
+      dark:border-slate-700
+      dark:bg-slate-900
+      lg:sticky
+      lg:top-28
+    "
+  >
+    {/* Header */}
+    <div className="border-b border-slate-200 p-5 dark:border-slate-700 sm:p-6">
+      <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+        Property Price
+      </p>
+
+      <h2 className="mt-1 text-3xl font-bold text-blue-700 dark:text-blue-400">
+        ₹{Number(property.price || 0).toLocaleString("en-IN")}
+      </h2>
+
+      {property.area && (
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          ₹
+          {Math.round(
+            Number(property.price || 0) / Number(property.area)
+          ).toLocaleString("en-IN")}{" "}
+          / sq.ft
+        </p>
+      )}
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <span className="
+          rounded-full
+          bg-blue-100
+          px-3
+          py-1
+          text-xs
+          font-semibold
+          text-blue-700
+          dark:bg-blue-500/15
+          dark:text-blue-400
+        ">
+          {property.condition}
+        </span>
+
+        {property.furnishing && (
+          <span className="
+            rounded-full
+            bg-slate-100
+            px-3
+            py-1
+            text-xs
+            font-semibold
+            text-slate-600
+            dark:bg-slate-800
+            dark:text-slate-300
+          ">
+            {property.furnishing}
+          </span>
+        )}
+      </div>
+    </div>
+
+    {/* Actions */}
+    <div className="p-5 sm:p-6">
+      <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
+        Interested in this property?
+      </p>
+
+      <button
+        type="button"
+        className="
+          w-full
+          rounded-xl
+          bg-blue-600
+          py-3.5
+          font-semibold
+          text-white
+          shadow-sm
+          transition-all
+          duration-200
+          hover:bg-blue-700
+          hover:shadow-md
+          active:scale-[0.98]
+        "
+      >
+        Contact Builder
+      </button>
+
+      <button
+        type="button"
+        className="
+          mt-3
+          w-full
+          rounded-xl
+          border
+          border-blue-600
+          py-3.5
+          font-semibold
+          text-blue-600
+          transition-all
+          duration-200
+          hover:bg-blue-50
+          active:scale-[0.98]
+          dark:border-blue-500
+          dark:text-blue-400
+          dark:hover:bg-blue-500/10
+        "
+      >
+        Get Phone Number
+      </button>
+
+      <button
+        type="button"
+        className="
+          mt-3
+          w-full
+          rounded-xl
+          border
+          border-slate-200
+          py-3.5
+          font-semibold
+          text-slate-700
+          transition-all
+          duration-200
+          hover:bg-slate-100
+          active:scale-[0.98]
+          dark:border-slate-700
+          dark:text-slate-200
+          dark:hover:bg-slate-800
+        "
+      >
+        Schedule Visit
+      </button>
+
+      {/* Trust message */}
+      <div className="
+        mt-5
+        rounded-2xl
+        bg-slate-50
+        p-4
+        dark:bg-slate-800
+      ">
+        <p className="text-center text-xs leading-5 text-slate-500 dark:text-slate-400">
+          Your enquiry will be shared with the property representative.
+        </p>
+      </div>
+    </div>
+  </div>
+</aside>
           </div>
         </div>
       </main>
     </>
   );
 };
+
 export default PropertyDetails;

@@ -11,7 +11,7 @@ const PropertyImage = ({ property, onClick }) => {
   const images =
     property.images?.length > 0
       ? property.images
-      : ["https://placehold.co/800x600/e5e7eb/6b7280?text=No+Image"];
+      : ["https://placehold.co/800x600/0f172a/94a3b8?text=No+Image"];
 
   return (
     <div className="relative overflow-hidden rounded-t-3xl" onClick={onClick}>

@@ -46,7 +46,20 @@ import {
             {features.map((feature, index) => (
                 <div
                 key={index}
-                className=" flex items-center gap-3 rounded-xl bg-gray-50 px-3 sm:px-4 py-2.5 sm:py-3 transition-all duration-300 hover:bg-blue-50">
+                className="flex
+  items-center
+  gap-3
+  rounded-xl
+  bg-gray-50
+  px-3
+  py-2.5
+  transition-all
+  duration-300
+  hover:bg-blue-50
+
+  dark:bg-slate-800
+  dark:hover:bg-slate-700
+">
                 <div
                     className="
                         text-blue-600
@@ -59,6 +72,7 @@ import {
                 text-xs sm:text-sm
                 font-medium
                 text-gray-700
+                dark:text-slate-300
                 ">
                 {feature.label}
                 </p>
