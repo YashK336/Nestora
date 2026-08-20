@@ -9,12 +9,12 @@ import { NavbarProvider } from "./context/NavbarContext";
 import { ThemeProvider } from "./context/ThemeContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ThemeProvider>
     <NavbarProvider>
       <AuthProvider>
-        <ThemeProvider>
           <App />
-        </ThemeProvider>
-      </AuthProvider>
-    </NavbarProvider>
+        </AuthProvider>
+      </NavbarProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );

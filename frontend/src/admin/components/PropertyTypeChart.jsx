@@ -23,13 +23,27 @@ const PropertyTypeChart = ({ propertyTypes = [] }) => {
   }));
 
   return (
-    <div className="rounded-2xl border bg-white p-6 shadow-sm">
-      <h2 className="mb-6 text-xl font-semibold">
+    <div
+      className="
+        rounded-2xl
+        border
+        border-gray-200
+        bg-white
+        p-6
+        shadow-sm
+        transition-colors
+        duration-300
+
+        dark:border-slate-700
+        dark:bg-slate-900
+      "
+    >
+      <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
         Property Types
       </h2>
 
       {data.length === 0 ? (
-        <p className="text-gray-500">
+        <p className="text-gray-500 dark:text-slate-400">
           No data available.
         </p>
       ) : (
@@ -50,9 +64,23 @@ const PropertyTypeChart = ({ propertyTypes = [] }) => {
               ))}
             </Pie>
 
-            <Tooltip />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "var(--chart-tooltip-bg)",
+                border: "1px solid var(--chart-tooltip-border)",
+                borderRadius: "12px",
+                color: "var(--chart-tooltip-text)",
+              }}
+              labelStyle={{
+                color: "var(--chart-tooltip-text)",
+              }}
+            />
 
-            <Legend />
+            <Legend
+              wrapperStyle={{
+                color: "var(--chart-legend-text)",
+              }}
+            />
           </PieChart>
         </ResponsiveContainer>
       )}

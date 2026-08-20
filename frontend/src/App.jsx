@@ -9,11 +9,13 @@ import Properties from "./admin/pages/Properties";
 import EditProperty from "./admin/pages/EditProperty";
 import Dashboard from "./admin/pages/Dashboard";
 import Users from "./admin/pages/Users";
-import Settings from "./admin/pages/Settings";
 import Login from "./admin/pages/Login";
 import ProtectedRoute from "./admin/components/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./pages/NotFound";
+import Analytics from "./admin/pages/Analytics";
+import AdminProfile from "./admin/pages/AdminProfile";
+import Settings from "./admin/pages/Settings";
 function App() {
   return (
     <BrowserRouter>
@@ -53,7 +55,6 @@ function App() {
         <Route path="/properties" element={<PropertyListing />} />
         <Route path="/property/:id" element={<PropertyDetails />} />
         <Route path="/admin/login" element={<Login />} />
-
         <Route
   path="/admin"
   element={
@@ -83,17 +84,7 @@ function App() {
   />
 
   <Route
-    path="add-property"
-    element={<AddProperty />}
-  />
-
-  <Route
     path="properties/:id/edit"
-    element={<EditProperty />}
-  />
-
-  <Route
-    path="edit-property/:id"
     element={<EditProperty />}
   />
 
@@ -103,8 +94,17 @@ function App() {
   />
 
   <Route
+    path="analytics"
+    element={<Analytics />}
+  />
+
+  <Route
     path="settings"
     element={<Settings />}
+  />
+  <Route
+  path="profile"
+  element={<AdminProfile />}
 />
 </Route>
 <Route path="*" element={<NotFound />} />

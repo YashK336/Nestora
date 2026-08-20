@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createProperty } from "../../services/propertyService";
-import PropertyForm from "../components/PropertyForm";
-import { uploadImages } from "../services/uploadService";
 import toast from "react-hot-toast";
+
+import { createProperty } from "../../services/propertyService";
+import { uploadImages } from "../services/uploadService";
+
+import PropertyForm from "../components/PropertyForm";
 import FormSkeleton from "../components/skeletons/FormSkeleton";
+import { validateProperty } from "../utils/propertyValidation";
 
 const initialFormData = {
   title: "",
@@ -35,102 +38,169 @@ const amenitiesList = [
 
 const AddProperty = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(initialFormData);
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [imagePreviews, setImagePreviews] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] =
+    useState(initialFormData);
+
+  const [selectedImages, setSelectedImages] =
+    useState([]);
+
+  const [imagePreviews, setImagePreviews] =
+    useState([]);
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const handleChange = (e) => {
+    const {
+      name,
+      value,
+      type,
+      checked,
+    } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        type === "checkbox"
+          ? checked
+          : value,
+    }));
+  };
 
   const handleAmenityChange = (amenity) => {
     setFormData((prev) => ({
       ...prev,
+
       amenities: prev.amenities.includes(amenity)
-        ? prev.amenities.filter((item) => item !== amenity)
-        : [...prev.amenities, amenity],
-    }));
-  };
-  if (loading) return <FormSkeleton />;
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
+        ? prev.amenities.filter(
+            (item) => item !== amenity
+          )
+        : [
+            ...prev.amenities,
+            amenity,
+          ],
     }));
   };
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files || []);
+    const files = Array.from(
+      e.target.files || []
+    );
 
-    setSelectedImages((prev) => [...prev, ...files]);
+    if (!files.length) return;
+
+    setSelectedImages((prev) => [
+      ...prev,
+      ...files,
+    ]);
+
     setImagePreviews((prev) => [
       ...prev,
-      ...files.map((file) => URL.createObjectURL(file)),
+      ...files.map((file) =>
+        URL.createObjectURL(file)
+      ),
     ]);
+
     e.target.value = "";
   };
 
   const removeImage = (index) => {
-    setSelectedImages((prev) => prev.filter((_, i) => i !== index));
-    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
+    setSelectedImages((prev) =>
+      prev.filter((_, i) => i !== index)
+    );
+
+    setImagePreviews((prev) =>
+      prev.filter((_, i) => i !== index)
+    );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.title.trim()) {
-      toast.error("Title is required");
+  
+    const errors = validateProperty(
+      formData,
+      selectedImages.length
+    );
+  
+    if (Object.keys(errors).length > 0) {
+      toast.error(Object.values(errors)[0]);
       return;
     }
-
-    if (selectedImages.length === 0) {
-      toast.error("Please upload at least one image");
-      return;
-    }
-
-    if (Number(formData.price) <= 0) {
-      toast.error("Invalid price");
-      return;
-    }
-
+  
     try {
       setLoading(true);
-
+  
       const imageUrls = await uploadImages(selectedImages);
-
+  
       await createProperty({
         ...formData,
         images: imageUrls,
       });
-
+  
       toast.success("Property added successfully!");
+  
       setFormData(initialFormData);
       setSelectedImages([]);
       setImagePreviews([]);
+  
       navigate("/admin/properties");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
+  if (loading) {
+    return <FormSkeleton />;
+  }
+
   return (
-    <div className="mx-auto max-w-5xl rounded-3xl bg-white p-8 shadow-lg">
-      <h1 className="mb-8 text-3xl font-bold">Add Property</h1>
-      <PropertyForm
-        formData={formData}
-        handleChange={handleChange}
-        handleAmenityChange={handleAmenityChange}
-        handleSubmit={handleSubmit}
-        amenitiesList={amenitiesList}
-        handleImageChange={handleImageChange}
-        imagePreviews={imagePreviews}
-        removeImage={removeImage}
-        loading={loading}
-      />
-    </div>
+    <main className="min-h-screen bg-gray-100 py-10 dark:bg-slate-950">
+      <div
+        className="
+          mx-auto
+          max-w-5xl
+          rounded-3xl
+          border
+          border-gray-200
+          bg-white
+          p-8
+          shadow-lg
+
+          dark:border-slate-700
+          dark:bg-slate-900
+        "
+      >
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            Add Property
+          </h1>
+
+          <p className="mt-2 text-gray-500 dark:text-slate-400">
+            Add a new property listing to Nestora.
+          </p>
+        </div>
+
+        <PropertyForm
+          formData={formData}
+          handleChange={handleChange}
+          handleAmenityChange={
+            handleAmenityChange
+          }
+          handleSubmit={handleSubmit}
+          amenitiesList={amenitiesList}
+          handleImageChange={
+            handleImageChange
+          }
+          imagePreviews={imagePreviews}
+          removeImage={removeImage}
+          loading={loading}
+        />
+      </div>
+    </main>
   );
 };
 

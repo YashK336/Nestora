@@ -1,4 +1,5 @@
 import Property from "../models/Property.js";
+import createNotification from "../utils/createNotification.js";
 
 export const getProperties = async (req, res) => {
   try {
@@ -98,7 +99,6 @@ export const getProperties = async (req, res) => {
           hasPrevPage: pageNumber > 1,
         },
       });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -135,63 +135,96 @@ export const getProperty = async (req, res) => {
 
 // POST /api/properties
 export const createProperty = async (req, res) => {
-    try {
-      const property = await Property.create(req.body);
-  
-      res.status(201).json(property);
-    } catch (error) {
-      res.status(400).json({
-        message: error.message,
-      });
-    }
-  };
+  try {
+    const property = await Property.create(req.body);
+
+    await createNotification({
+      recipient: req.user._id,
+      type: "property",
+      title: "New property added",
+      message: `"${property.title}" was added successfully.`,
+    });
+
+    res.status(201).json(property);
+  } catch (error) {
+    console.error(
+      "Create property error:",
+      error
+    );
+
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
 
 // PUT /api/properties/:id
 export const updateProperty = async (req, res) => {
-    try {
-      const property = await Property.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-  
-      if (!property) {
-        return res.status(404).json({
-          message: "Property not found",
-        });
+  try {
+    const property = await Property.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
       }
-  
-      res.status(200).json(property);
-    } catch (error) {
-      if (error.name === "CastError") {
-        return res.status(404).json({
-          message: "Property not found",
-        });
-      }
-    
-      console.error("Update property error:", error);
-    
-      res.status(500).json({
-        message: "Server error",
+    );
+
+    if (!property) {
+      return res.status(404).json({
+        message: "Property not found",
       });
     }
-  };
+
+    await createNotification({
+      recipient: req.user._id,
+      type: "property",
+      title: "Property updated",
+      message: `"${property.title}" was updated successfully.`,
+    });
+
+    res.status(200).json(property);
+  } catch (error) {
+    if (error.name === "CastError") {
+      return res.status(404).json({
+        message: "Property not found",
+      });
+    }
+
+    console.error(
+      "Update property error:",
+      error
+    );
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
 
 // DELETE /api/properties/:id
 export const deleteProperty = async (req, res) => {
     try {
-      const property = await Property.findByIdAndDelete(
+      const property = await Property.findById(
         req.params.id
       );
-  
+      
       if (!property) {
         return res.status(404).json({
           message: "Property not found",
         });
       }
+      
+      await Property.findByIdAndDelete(
+        req.params.id
+      );
+      
+      await createNotification({
+        recipient: req.user._id,
+        type: "property",
+        title: "Property deleted",
+        message: `"${property.title}" was deleted.`,
+      });
   
       res.status(200).json({
         message: "Property deleted successfully",

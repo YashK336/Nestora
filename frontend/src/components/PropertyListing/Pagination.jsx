@@ -43,7 +43,7 @@ const Pagination = ({
         <button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="rounded-lg border px-4 py-2 disabled:opacity-40"
+        className="rounded-lg border px-4 py-2 disabled:opacity-40 dark:text-white"
         >
         Previous
         </button>
@@ -62,7 +62,7 @@ const Pagination = ({
             className={`h-10 w-10 rounded-lg transition ${
                 currentPage === page
                 ? "bg-blue-600 text-white"
-                : "border hover:bg-gray-100"
+                : "border hover:bg-gray-100 dark:text-white"
             }`}
             >
             {page}
@@ -72,7 +72,7 @@ const Pagination = ({
         <button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="rounded-lg border px-4 py-2 disabled:opacity-40"
+        className="rounded-lg border px-4 py-2 disabled:opacity-40 dark:text-white"
         >
         Next
         </button>

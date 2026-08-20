@@ -147,7 +147,7 @@ const greeting =
         </div>
         <div className="flex gap-3">
           <button
-            onClick={() => navigate("/admin/add-property")}
+            onClick={() => navigate("/admin/properties/new")}
             className="rounded-xl bg-white px-5 py-3 font-medium text-blue-700 transition hover:scale-105"
           >
             + Add Property
@@ -210,16 +210,34 @@ const greeting =
 
       <div className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
-          <div className="rounded-2xl border bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Recent Properties</h2>
+        <div
+  className="
+    rounded-2xl
+    border
+    border-gray-200
+    bg-white
+    p-6
+    shadow-sm
+    transition-colors
+    duration-300
 
-            {recentProperties.length === 0 ? (
-              <p className="text-gray-500">No properties yet.</p>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead className="bg-slate-50">
-                    <tr className="text-left text-sm uppercase tracking-wide text-gray-500">
+    dark:border-slate-700
+    dark:bg-slate-900
+  "
+>
+  <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+    Recent Properties
+  </h2>
+
+  {recentProperties.length === 0 ? (
+    <p className="text-gray-500 dark:text-slate-400">
+      No properties yet.
+    </p>
+  ) : (
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse">
+        <thead className="bg-slate-50 dark:bg-slate-800">
+          <tr className="text-left text-sm uppercase tracking-wide text-gray-500 dark:text-slate-400">
                       <th className="px-4 py-4">Image</th>
                       <th className="px-4 py-4">Property</th>
                       <th className="px-4 py-4">Price</th>

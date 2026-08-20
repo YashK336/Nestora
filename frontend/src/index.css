@@ -142,3 +142,30 @@ body {
   opacity: 1;
   transform: scale(1.2);
 }
+:root {
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: #e2e8f0;
+  --chart-tooltip-text: #0f172a;
+  --chart-legend-text: #475569;
+}
+
+.dark {
+  --chart-tooltip-bg: #1e293b;
+  --chart-tooltip-border: #475569;
+  --chart-tooltip-text: #f8fafc;
+  --chart-legend-text: #cbd5e1;
+}
+.dark .gallery-swiper .swiper-button-next,
+.dark .gallery-swiper .swiper-button-prev {
+  color: #60a5fa;
+}
+
+.dark .gallery-swiper .swiper-pagination-bullet {
+  background: #94a3b8;
+  opacity: 0.7;
+}
+
+.dark .gallery-swiper .swiper-pagination-bullet-active {
+  background: #60a5fa;
+  opacity: 1;
+}

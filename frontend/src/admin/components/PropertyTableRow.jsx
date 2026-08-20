@@ -1,6 +1,5 @@
 import Button from "../../components/ui/Button";
 
-
 const PropertyTableRow = ({
   property,
   onEdit,
@@ -8,7 +7,18 @@ const PropertyTableRow = ({
   onView,
 }) => {
   return (
-    <tr className="border-t transition hover:bg-gray-50">
+    <tr
+      className="
+        border-t
+        border-gray-200
+        transition
+        hover:bg-gray-50
+
+        dark:border-slate-700
+        dark:hover:bg-slate-800/70
+      "
+    >
+      {/* Image */}
       <td className="px-6 py-4">
         <img
           src={
@@ -20,45 +30,75 @@ const PropertyTableRow = ({
         />
       </td>
 
+      {/* Property */}
       <td className="px-6 py-4">
-        <h3 className="font-semibold">
+        <h3 className="font-semibold text-gray-900 dark:text-white">
           {property.title}
         </h3>
 
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-slate-400">
           {property.city}
         </p>
       </td>
 
-      <td className="px-6 py-4 font-semibold text-blue-600">
+      {/* Price */}
+      <td className="px-6 py-4 font-semibold text-blue-600 dark:text-blue-400">
         ₹ {Number(property.price).toLocaleString("en-IN")}
       </td>
 
+      {/* Status */}
       <td className="px-6 py-4">
         {property.featured ? (
-          <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-700">
+          <span
+            className="
+              rounded-full
+              bg-yellow-100
+              px-3
+              py-1
+              text-sm
+              font-medium
+              text-yellow-700
+
+              dark:bg-yellow-900/30
+              dark:text-yellow-400
+            "
+          >
             Featured
           </span>
         ) : (
-          <span className="rounded-full bg-gray-100 px-3 py-1 text-sm">
+          <span
+            className="
+              rounded-full
+              bg-gray-100
+              px-3
+              py-1
+              text-sm
+              text-gray-600
+
+              dark:bg-slate-800
+              dark:text-slate-300
+            "
+          >
             Normal
           </span>
         )}
       </td>
 
+      {/* Actions */}
       <td className="px-6 py-4">
         <div className="flex justify-center gap-3">
-        <Button
+          <Button
             size="sm"
             variant="secondary"
-            onClick={() => onView(property)}
+            onClick={() => onView?.(property)}
           >
             View
           </Button>
+
           <Button
             size="sm"
             variant="primary"
-            onClick={() => onEdit(property)}
+            onClick={() => onEdit?.(property)}
           >
             Edit
           </Button>
@@ -66,7 +106,7 @@ const PropertyTableRow = ({
           <Button
             size="sm"
             variant="danger"
-            onClick={() => onDelete(property)}
+            onClick={() => onDelete?.(property)}
           >
             Delete
           </Button>

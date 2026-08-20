@@ -3,7 +3,7 @@ import {
     Building2,
     Users,
     Settings,
-    LogOut,
+    BarChart3,
   } from "lucide-react";
   
   const sidebarLinks = [
@@ -28,9 +28,9 @@ import {
       icon: Settings,
     },
     {
-      name: "Logout",
-      path: "/admin/logout",
-      icon: LogOut,
+      name: "Analytics",
+      path: "/admin/analytics",
+      icon: BarChart3,
     },
   ];
   
